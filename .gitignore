@@ -1,0 +1,41 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+*.pnp
+.pnp.js
+
+# Docker
+Dockerfile~
+docker-compose.yml
+docker-compose.override.yml
+.dockerignore
+.vscode/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependency directories
+pids/
+logs/
+results/
+ 
+# Testing
+coverage/
+
+# Production
+build/
+dist/
+ 
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*
+
+# Yarn Integrity file
+.yarn-integrity

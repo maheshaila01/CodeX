@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-execution
+  labels:
+    app: codex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codex
+  template:
+    metadata:
+      labels:
+        app: codex
+    spec:
+      containers:
+      - name: server
+        image: code-execution-engine-main-server
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
+      - name: worker
+        image: code-execution-engine-main-worker
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: Always
