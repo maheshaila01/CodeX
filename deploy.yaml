@@ -15,11 +15,11 @@ spec:
         app: codex
     spec:
       containers:
-      # - name: server
-      #   image: maheshaila01/codex:server
-      #   ports:
-      #   - containerPort: 8080
-      #   - containerPort: 9090
+      - name: server
+        image: maheshaila01/codex:server
+        ports:
+        - containerPort: 8080
+        - containerPort: 9090
       - name: worker
         image: maheshaila01/codex:worker
       - name: rabbitmq
