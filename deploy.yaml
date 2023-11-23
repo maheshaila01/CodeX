@@ -15,13 +15,19 @@ spec:
         app: codex
     spec:
       containers:
-      - name: server
-        image: code-execution-engine-main-server
-        ports:
-        - containerPort: 3000
-        imagePullPolicy: Always
+      # - name: server
+      #   image: maheshaila01/codex:server
+      #   ports:
+      #   - containerPort: 8080
+      #   - containerPort: 9090
       - name: worker
-        image: code-execution-engine-main-worker
+        image: maheshaila01/codex:worker
+      - name: rabbitmq
+        image: maheshaila01/codex:rabbitmq
         ports:
-        - containerPort: 5000
-        imagePullPolicy: Always
+        - containerPort: 5672
+      - name: redis
+        image: maheshaila01/codex:redis
+        ports:
+        - containerPort: 6379
+      

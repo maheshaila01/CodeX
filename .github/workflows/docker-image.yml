@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build and Push Docker Image - Server
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: maheshaila01/codex:server
+        directory: ./server
+        dockerfile: ./server/Dockerfile  
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and Push Docker Image - Worker
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: maheshaila01/codex:worker
+        directory: ./worker
+        dockerfile: ./worker/Dockerfile  
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}

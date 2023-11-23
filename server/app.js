@@ -34,7 +34,7 @@ app.use(compression({
 
 // for redis
 const client = redis.createClient({
-    host: 'redis-server',
+    host: 'localhost',
     port: 6379
 })
 
@@ -192,7 +192,7 @@ sslServer.listen(port2, () => {
 })
 
 // for the rabbitmq
-amqp.connect('amqp://rabbitmq:5672', function (error0, connection) {
+amqp.connect('amqp://localhost:5672', function (error0, connection) {
     if (error0) {
         console.log('An error occured while connecting rabbitmq');
         console.log(error0);
