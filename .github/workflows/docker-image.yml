@@ -15,7 +15,8 @@ jobs:
     - name: Build and Push Docker Image - Server
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
-        image: maheshaila01/codex:server
+        image: maheshaila01/codex
+        tags: server
         directory: ./server
         dockerfile: ./server/Dockerfile  
         registry: docker.io
@@ -25,7 +26,8 @@ jobs:
     - name: Build and Push Docker Image - Worker
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
-        image: maheshaila01/codex:worker
+        image: maheshaila01/codex
+        tags: worker
         directory: ./worker
         dockerfile: ./worker/Dockerfile  
         registry: docker.io
