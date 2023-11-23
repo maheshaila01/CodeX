@@ -29,14 +29,14 @@ jobs:
         name: Build and Push Docker Image - Server
         uses: docker/build-push-action@v5
         with:
-          context: ./server
+          context: ./server/
           push: true
           tags: maheshaila01/codex:server
       -
         name: Build and Push Docker Image - Worker
         uses: docker/build-push-action@v5
         with:
-          context: ./server
+          context: ./worker/
           push: true
           tags: maheshaila01/codex:worker
 
