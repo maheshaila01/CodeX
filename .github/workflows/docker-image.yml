@@ -16,7 +16,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: maheshaila01/codex
-        tags: server
+        tags: server,latest
         directory: ./server
         dockerfile: ./server/Dockerfile  
         registry: docker.io
@@ -27,7 +27,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: maheshaila01/codex
-        tags: worker
+        tags: worker,latest
         directory: ./worker
         dockerfile: ./worker/Dockerfile  
         registry: docker.io
