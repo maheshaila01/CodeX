@@ -4,7 +4,7 @@ on:
       use-windows:
         description: "Run on Windows? (true or false)"
         required: true
-        default: false
+        default: "false"
 
 jobs:
   dynamic-runner:
@@ -12,15 +12,15 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            condition: ${{ inputs.docker-windows-os == 'false' }}
+            condition: ${{ inputs.use-windows == 'false' }}
           - os: windows-latest
-            condition: ${{ inputs.docker-windows-os == 'true' }}
+            condition: ${{ inputs.use-windows == 'true' }}
     runs-on: ${{ matrix.os }}
     steps:
       - name: Run only on Ubuntu
-        if: ${{ matrix.os == 'ubuntu-latest' && inputs.docker-windows-os == 'false' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && inputs.use-windows == 'false' }}
         run: echo "Running on Ubuntu"
 
       - name: Run only on Windows
-        if: ${{ matrix.os == 'windows-latest' && inputs.docker-windows-os == 'true' }}
+        if: ${{ matrix.os == 'windows-latest' && inputs.use-windows == 'true' }}
         run: echo "Running on Windows"
