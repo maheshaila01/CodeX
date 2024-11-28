@@ -18,6 +18,7 @@ jobs:
         run: |
           if [ '${{ inputs.use-windows }}' == 'true' ]; then
             echo "os=windows-latest" >> $GITHUB_ENV
+            echo "para=docker" >> $GITHUB_ENV
             echo "::set-output name=os::windows-latest"
           else
             echo "os=ubuntu-latest" >> $GITHUB_ENV
@@ -33,4 +34,4 @@ jobs:
         run: echo "Running on Ubuntu"
       - name: Run only on Windows
         if: ${{ needs.dynamic-runner.outputs.os == 'windows-latest' }}
-        run: echo "Running on Windows"
+        run: echo needs.dynamic-runner.outputs.para
