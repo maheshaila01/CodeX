@@ -10,24 +10,26 @@ on:
 jobs:
   dynamic-runner:
     runs-on: ubuntu-latest
+    outputs:
+      os: ${{ steps.set-os.outputs.os }}
     steps:
       - name: Set OS variable
         id: set-os
         run: |
           if [ "${{ inputs.use-windows }}" == "true" ]; then
             echo "os=windows-latest" >> $GITHUB_ENV
+            echo "::set-output name=os::windows-latest"
           else
             echo "os=ubuntu-latest" >> $GITHUB_ENV
-          fi
-
+            echo "::set-output name=os::ubuntu-latest"
+          
   run-job:
     needs: dynamic-runner
-    runs-on: ${{ env.os }}
+    runs-on: ${{ needs.dynamic-runner.outputs.os }}
     steps:
       - name: Run only on Ubuntu
-        if: ${{ env.os == 'ubuntu-latest' }}
+        if: ${{ needs.dynamic-runner.outputs.os == 'ubuntu-latest' }}
         run: echo "Running on Ubuntu"
-
       - name: Run only on Windows
-        if: ${{ env.os == 'windows-latest' }}
+        if: ${{ needs.dynamic-runner.outputs.os == 'windows-latest' }}
         run: echo "Running on Windows"
