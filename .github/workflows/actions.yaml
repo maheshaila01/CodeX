@@ -12,8 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       os: ${{ steps.set-os.outputs.os }}
+      para: ${{ steps.set-os.outputs.para }}
     steps:
-      - name: Set OS variable
+      - name: Set OS and para variables
         id: set-os
         run: |
           if [ '${{ inputs.use-windows }}' == 'true' ]; then
@@ -23,7 +24,9 @@ jobs:
             echo "::set-output name=para::docker"
           else
             echo "os=ubuntu-latest" >> $GITHUB_ENV
+            echo "para=ubuntu" >> $GITHUB_ENV
             echo "::set-output name=os::ubuntu-latest"
+            echo "::set-output name=para::ubuntu"
           fi
           
   run-job:
@@ -37,4 +40,4 @@ jobs:
         if: ${{ needs.dynamic-runner.outputs.os == 'windows-latest' }}
         shell: pwsh
         run: |
-          Write-Output ${{needs.dynamic-runner.outputs.para}}
+          Write-Output "${{ needs.dynamic-runner.outputs.para }}"
