@@ -16,12 +16,13 @@ jobs:
       - name: Set OS variable
         id: set-os
         run: |
-          if [ "${{ inputs.use-windows }}" == "true" ]; then
+          if [ "${{ inputs.use-windows }}" == 'true' ]; then
             echo "os=windows-latest" >> $GITHUB_ENV
             echo "::set-output name=os::windows-latest"
           else
             echo "os=ubuntu-latest" >> $GITHUB_ENV
             echo "::set-output name=os::ubuntu-latest"
+          fi
           
   run-job:
     needs: dynamic-runner
