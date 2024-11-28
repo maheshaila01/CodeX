@@ -2,9 +2,10 @@ on:
   workflow_dispatch:
     inputs:
       use-windows:
-        description: "Run on Windows? (true or false)"
-        required: true
-        default: false
+        type: boolean
+        description: "Docker windows OS"
+        default: true
+        required: false
 
 jobs:
   dynamic-runner:
