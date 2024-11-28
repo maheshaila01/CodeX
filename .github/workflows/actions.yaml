@@ -20,6 +20,7 @@ jobs:
             echo "os=windows-latest" >> $GITHUB_ENV
             echo "para=docker" >> $GITHUB_ENV
             echo "::set-output name=os::windows-latest"
+            echo "::set-output name=para::docker"
           else
             echo "os=ubuntu-latest" >> $GITHUB_ENV
             echo "::set-output name=os::ubuntu-latest"
