@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+    inputs:
+      use-windows:
+        description: "Run on Windows? (true or false)"
+        required: true
+        default: "false"
+
+jobs:
+  dynamic-runner:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            condition: ${{ inputs.docker-windows-os == 'false' }}
+          - os: windows-latest
+            condition: ${{ inputs.docker-windows-os == 'true' }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Run only on Ubuntu
+        if: ${{ matrix.os == 'ubuntu-latest' && inputs.docker-windows-os == 'false' }}
+        run: echo "Running on Ubuntu"
+
+      - name: Run only on Windows
+        if: ${{ matrix.os == 'windows-latest' && inputs.docker-windows-os == 'true' }}
+        run: echo "Running on Windows"
